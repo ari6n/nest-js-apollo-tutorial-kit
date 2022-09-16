@@ -1,37 +1,52 @@
+import { addMockFunctionsToSchema, makeExecutableSchema } from 'graphql-tools';
+import mocks from './mocks'
+
+const typeDefs = `
+type Query {
+  testString: String
+}
+`;
+
+const schema = makeExecutableSchema({typeDefs});
+
+addMockFunctionsToSchema({schema, mocks});
+
+/*
 import {
   makeExecutableSchema,
 } from 'graphql-tools';
 // import mocks from './mocks'
 import resolvers from './resolvers';
 
-// 定义schema
+// schema definition
 const typeDefs = `
-type Author {   # 作者的字段有：id，名字，还有 发表的帖子
+type Author {   # Author fields are: id, name, and published post
   id: Int
   firstName: String
   lastName: String
   posts: [Post]
 }
-type Post {    # 帖子的字段有下面这些，包括 这个帖子是哪个作者写的
+type Post {    # The fields of the post are as follows, including which author wrote this post
   id: Int
   title: String
   text: String
   views: Int
   author: Author
 }
-# 定义查询内容
+# Define query content
 type Query {
-  author(firstName: String, lastName: String): Author # 查询作者信息
+  author(firstName: String, lastName: String): Author # Query author information
   getFortuneCookie: String
 }
 `;
 
-// 进入graphql提供的一个编译器中
+// into a compiler provided by graphql
 // const schema = makeExecutableSchema({ typeDefs });
 
-// 通过这个工具来添加mock数据
+// Use this tool to add mock data
 // addMockFunctionsToSchema({ schema, mocks });
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
+*/
 
 export default schema;
