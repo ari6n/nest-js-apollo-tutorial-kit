@@ -2,8 +2,29 @@ import { addMockFunctionsToSchema, makeExecutableSchema } from 'graphql-tools';
 import mocks from './mocks'
 
 const typeDefs = `
+# Author type. Fields are: id, name, and published posts (array)
+type Author {
+  id: Int
+  firstName: String
+  lastName: String
+  posts: [Post]
+}
+
+# Post type. Fields are: id, title, text, view-counter, author
+type Post {
+  id: Int
+  title: String
+  text: String
+  views: Int
+  author: Author
+}
+
+# Definition of queries
 type Query {
-  testString: String
+  testString: String                                                # mocked test string - returns 'It works!'
+  author(firstName: String, lastName: String): Author               # request author details - returns found Author-object
+  allAuthors: [Author]                                              # request all registered authors - returns array of Author-objects
+  getFortuneCookie: String                                          # will be used later
 }
 `;
 
